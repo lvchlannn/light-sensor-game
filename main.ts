@@ -5,6 +5,8 @@ input.onButtonPressed(Button.A, function () {
     music.playTone(698, music.beat(BeatFraction.Whole))
     gameStarted = true
 })
+let time = 0
+let examplePoints = 0
 let gameEnded = false
 let lightSensorData = 0
 let gameStarted = false
@@ -23,9 +25,24 @@ basic.forever(function () {
         images.arrowImage(ArrowNames.West).showImage(0)
         gameStarted = false
     }
+    while (gameEnded == true) {
+        basic.clearScreen()
+        tm.showNumber(examplePoints)
+        gameStarted = false
+        basic.showNumber(time)
+        basic.showString("seconds")
+        examplePoints = 0
+        time = 0
+        buttonApressed = false
+        gameEnded = false
+    }
     if (gameStarted == true) {
         if (lightSensorData < 200) {
             gameEnded = true
+        } else if (gameEnded == false) {
+            tm.showNumber(time)
+            time += 1
+            basic.pause(1000)
         }
     }
 })
