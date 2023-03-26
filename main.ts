@@ -1,12 +1,11 @@
 input.onButtonPressed(Button.A, function () {
-    buttonApressed = true
     basic.clearScreen()
     basic.pause(randint(1000, 10000))
     music.playTone(698, music.beat(BeatFraction.Whole))
     gameStarted = true
+    buttonApressed = true
 })
 let time = 0
-let examplePoints = 0
 let gameEnded = false
 let lightSensorData = 0
 let gameStarted = false
@@ -27,11 +26,9 @@ basic.forever(function () {
     }
     while (gameEnded == true) {
         basic.clearScreen()
-        tm.showNumber(examplePoints)
         gameStarted = false
         basic.showNumber(time)
         basic.showString("seconds")
-        examplePoints = 0
         time = 0
         buttonApressed = false
         gameEnded = false
